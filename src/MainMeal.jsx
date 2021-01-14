@@ -62,18 +62,18 @@ const slides = [
 
 export class MainMeal extends React.Component {
   state = {
-    slides: [],
+    data: [],
   };
   async componentDidMount() {
     const response = await fetch(
       "https://www.themealdb.com/api/json/v1/1/random.php"
     );
     const slides = await response.json();
-    this.setState({ slides });
-    console.log(this.state.slides.meals[0].idMeal);
+    this.setState({ data: slides.meals });
+    console.log();
   }
   render() {
-    return slides.map((slide) => {
+    return this.state.data.map((slide) => {
       return (
         <div className={styles.Random_meal}>
           <div className={styles.meal}>
